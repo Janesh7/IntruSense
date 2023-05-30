@@ -55,7 +55,7 @@ const Admin = () => {
 
                                 <div className="text-white px-3 py-4 p-md-5 mx-md-4">
                                     <h4 className="mb-4">We are more than just a company</h4>
-                                    <p className="small mb-0">A smart home security system that integrates facial recognition technology with cybersecurity features. Admin web portal for it.
+                                    <p className="small text-justify mb-0">Our innovative system offers unparalleled intrusion detection, ensuring the utmost safety for your spaces. With state-of-the-art facial recognition technology, IntruSense provides accurate and efficient identification of authorized individuals, keeping unwanted trespassers at bay. But that's not all. We go beyond just facial recognition, incorporating robust cybersecurity measures to safeguard your sensitive data and protect against cyber threats. Experience peace of mind knowing that IntruSense is your trusted guardian, delivering precision security and comprehensive cybersecurity in one seamless package.
                                     </p>
                                 </div>
 
