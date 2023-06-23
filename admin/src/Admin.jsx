@@ -1,3 +1,4 @@
+// Admin.jsx
 import React, { useState } from 'react';
 import { MDBBtn, MDBContainer, MDBRow, MDBCol, MDBInput, MDBCard } from 'mdb-react-ui-kit';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
@@ -87,10 +88,68 @@ const LoginPage = () => {
   );
 };
 
+const CameraSegment = () => {
+  return (
+    <div className="segment flex flex-col items-center justify-center bg-white p-8 rounded-lg shadow-lg">
+      <h2 className="text-3xl font-bold mb-6">Camera Stream</h2>
+      {/* Display camera feed here */}
+      {/* Replace the placeholder text with your camera feed implementation */}
+      <div className="camera-feed h-96 w-96 bg-gray-200 border border-gray-300 rounded-md mb-6">
+        Camera feed placeholder
+      </div>
+      {/* Display text input and button for name labels */}
+      {/* Replace the placeholder text with your name input implementation */}
+      <div className="name-input flex items-center">
+        <MDBInput
+          label="Enter a name label"
+          id="name-input"
+          type="text"
+          className="mr-4"
+          // Add necessary event handlers and state management
+        />
+        <MDBBtn color="primary">Submit</MDBBtn>
+      </div>
+    </div>
+  );
+};
+
+const IntrusionTableSegment = () => {
+  return (
+    <div className="segment flex flex-col items-center justify-center bg-white p-8 rounded-lg shadow-lg">
+      <h2 className="text-3xl font-bold mb-6">Past Intrusion Attempts</h2>
+      {/* Display table with "past intrusion attempts" and "date" columns */}
+      {/* Replace the placeholder text with your intrusion table implementation */}
+      <table className="intrusion-table w-full">
+        <thead>
+          <tr>
+            <th className="py-2 px-4">Past Intrusion Attempts</th>
+            <th className="py-2 px-4">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td className="py-2 px-4">Attempt 1</td>
+            <td className="py-2 px-4">2023-06-17</td>
+          </tr>
+          <tr>
+            <td className="py-2 px-4">Attempt 2</td>
+            <td className="py-2 px-4">2023-06-16</td>
+          </tr>
+          {/* Add more rows as needed */}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
 const DashboardPage = () => {
   return (
-    <div>
-      <h1>Welcome to the Dashboard</h1>
+    <div className="dashboard-page flex flex-col items-center justify-center h-screen bg-slate-300">
+      <h1 className="text-5xl font-bold mb-8">Welcome to the Dashboard</h1>
+      <div className="dashboard-container grid grid-cols-1 md:grid-cols-2 gap-6">
+        <CameraSegment />
+        <IntrusionTableSegment />
+      </div>
     </div>
   );
 };
@@ -99,8 +158,8 @@ const Admin = () => {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<LoginPage />} />
-        <Route path='/dashboard' element={<DashboardPage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
     </Router>
   );
