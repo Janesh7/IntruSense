@@ -9,41 +9,44 @@ from imutils.video import FPS
 from imutils.video import VideoStream
 
 
-# Load serialized face detector
-print("Loading Face Detector...")
-protoPath = r"face_detection_model\deploy.prototxt"
-modelPath = r"face_detection_model\res10_300x300_ssd_iter_140000.caffemodel"
-detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
+fps = None
 
-# Load serialized face embedding model
-print("Loading Face Recognizer...")
-embedder = cv2.dnn.readNetFromTorch(r"face_detection_model\openface_nn4.small2.v1.t7")
-
-# Load the actual face recognition model along with the label encoder
-recognizer = pickle.loads(open(r"output\recognizer", "rb").read())
-le = pickle.loads(open(r"output\le.pickle", "rb").read())
-
-# Initialize the video stream, then allow the camera sensor to warm up
-print("Starting Video Stream...")
-vs = VideoStream(src=0).start()
-time.sleep(2.0)
-
-# Start the FPS throughput estimator
-fps = FPS().start()
-
-start_time = time.time()
-person_identified = False
-
-# DataFrame for identified persons
-data = []
-
-# Define a route to serve the video stream
+vs = None
+video_feed_active = True
 
 # Function to generate video frames
 def generate_frames():
-    global vs, fps
+    fps = FPS().start()
+    
+    # Load serialized face detector
+    print("Loading Face Detector...")
+    protoPath = r"face_detection_model\deploy.prototxt"
+    modelPath = r"face_detection_model\res10_300x300_ssd_iter_140000.caffemodel"
+    detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
+    vs = VideoStream(src=0).start()
 
-    while True:
+    # Load serialized face embedding model
+    print("Loading Face Recognizer...")
+    embedder = cv2.dnn.readNetFromTorch(r"face_detection_model\openface_nn4.small2.v1.t7")
+
+    # Load the actual face recognition model along with the label encoder
+    recognizer = pickle.loads(open(r"output\recognizer", "rb").read())
+    le = pickle.loads(open(r"output\le.pickle", "rb").read())
+
+    # Initialize the video stream, then allow the camera sensor to warm up
+    print("Starting Video Stream...")
+    time.sleep(2.0)
+
+    # Start the FPS throughput estimator
+
+    start_time = time.time()
+    person_identified = False
+
+    # DataFrame for identified persons
+    data = []
+
+    # Define a route to serve the video stream
+    while video_feed_active:
         frame = vs.read()
 
         # Resize the frame to have a width of 600 pixels (while maintaining the aspect ratio),
@@ -137,11 +140,15 @@ def generate_frames():
 
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        cleanup()
 
+def cleanup():
     # Cleanup
-    fps.stop()
-    print("Elapsed time: {:.2f}".format(fps.elapsed()))
-    print("Approx. FPS: {:.2f}".format(fps.fps()))
+    if fps is not None:
+        fps.stop()
+        print("Elapsed time: {:.2f}".format(fps.elapsed()))
+        print("Approx. FPS: {:.2f}".format(fps.fps()))
     cv2.destroyAllWindows()
-    vs.stop()
+    if vs is not None:
+        vs.stop()
 

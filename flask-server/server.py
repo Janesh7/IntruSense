@@ -1,7 +1,7 @@
 import cv2
 import csv
 from flask import Flask, render_template, Response, request, redirect, url_for
-from recognize_video import generate_frames
+from recognize_video import generate_frames,cleanup,video_feed_active
 
 app = Flask(__name__,template_folder='templates', static_folder='static')
 
@@ -28,3 +28,4 @@ def dashboard():
 
 if __name__ == '__main__':
     app.run()
+
