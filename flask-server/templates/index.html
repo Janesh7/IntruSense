@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #161623;
+      }
+      h1 {
+        text-align: center;
+        color: white;
+        margin-top: 2rem;
+      }
+      .container {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 40px 0;
+      }
+      .container .card {
+        position: relative;
+        width: 600px;
+        height: 700px;
+        background: rgba(255, 255, 255, 0.482);
+        margin: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.445);
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px);
+      }
+      .container .card .content {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .container .card .content .imgBx {
+        position: relative;
+        width: 350px;
+        aspect-ratio: 1;
+        overflow: hidden;
+        border: 2px solid rgba(0, 0, 0, 0.25);
+      }
+      .container .card .content .imgBx img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .container .card .content .contentBx h3 {
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: center;
+        margin: 20px 0 10px;
+        line-height: 1.1em;
+      }
+      @import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+      .rwd-table {
+        margin: 1em 0;
+        min-width: 300px;
+      }
+      .rwd-table tr {
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+      }
+      .rwd-table th {
+        display: none;
+      }
+      .rwd-table td {
+        display: block;
+      }
+      .rwd-table td:first-child {
+        padding-top: 0.5em;
+      }
+      .rwd-table td:last-child {
+        padding-bottom: 0.5em;
+      }
+      .rwd-table td:before {
+        content: attr(data-th) ": ";
+        font-weight: bold;
+        width: 6.5em;
+        display: inline-block;
+      }
+      @media (min-width: 480px) {
+        .rwd-table td:before {
+          display: none;
+        }
+      }
+      .rwd-table th,
+      .rwd-table td {
+        text-align: left;
+      }
+      @media (min-width: 480px) {
+        .rwd-table th,
+        .rwd-table td {
+          display: table-cell;
+          padding: 0.25em 0.5em;
+        }
+        .rwd-table th:first-child,
+        .rwd-table td:first-child {
+          padding-left: 0;
+        }
+        .rwd-table th:last-child,
+        .rwd-table td:last-child {
+          padding-right: 0;
+        }
+      }
+
+      .card h1 {
+        font-weight: normal;
+        letter-spacing: -1px;
+        color: #34495e;
+      }
+
+      .rwd-table {
+        background: #34495e;
+        color: #fff;
+        border-radius: 0.4em;
+        overflow: hidden;
+      }
+      .rwd-table tr {
+        border-color: #46637f;
+      }
+      .rwd-table th,
+      .rwd-table td {
+        margin: 0.5em 1em;
+      }
+      @media (min-width: 480px) {
+        .rwd-table th,
+        .rwd-table td {
+          padding: 1em !important;
+        }
+      }
+      .rwd-table th,
+      .rwd-table td:before {
+        color: #dd5;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DashBoard</h1>
+    <div class="container">
+      <div class="card">
+        <div class="content">
+          <div class="imgBx"><img src="{{ url_for('video_feed') }}" /></div>
+          <div class="contentBx">
+            <h3>Video Feed</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="content">
+          <h1>List of past Intrusion</h1>
+          <table class="rwd-table">
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+            </tr>
+            <tr>
+              <td>9-9-10</td>
+              <td>123pm</td>
+            </tr>
+            <tr>
+              <td>9-9-10</td>
+              <td>123pm</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

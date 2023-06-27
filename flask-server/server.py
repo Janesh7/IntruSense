@@ -25,5 +25,10 @@ def generate_frames():
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')  # Stream the video frames
 
+@app.route('/')
+def dashboard():
+    return render_template('index.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
