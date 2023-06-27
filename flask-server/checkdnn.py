@@ -55,7 +55,7 @@ def dnn(name):
                 cv2.imwrite(path + str(id) + str(sampleN) + ".jpg", face)
                 sampleN += 1
                 if sampleN > 199:
-                    exit()
+                    return
 
             text = "{:.2f}%".format(confidence * 100)
             y = startY - 10 if startY - 10 > 10 else startY + 10
@@ -79,4 +79,4 @@ def dnn(name):
     cv2.destroyAllWindows()
     video_capture.release()
 
-dnn("Bhawesh")
+# dnn("Bhawesh")

@@ -14,8 +14,10 @@ fps = None
 vs = None
 video_feed_active = True
 
+
 # Function to generate video frames
 def generate_frames():
+    print("Hello")
     fps = FPS().start()
     
     # Load serialized face detector
@@ -146,8 +148,8 @@ def cleanup():
     # Cleanup
     if fps is not None:
         fps.stop()
-        print("Elapsed time: {:.2f}".format(fps.elapsed()))
-        print("Approx. FPS: {:.2f}".format(fps.fps()))
+        # print("Elapsed time: {:.2f}".format(fps.elapsed()))
+        # print("Approx. FPS: {:.2f}".format(fps.fps()))
     cv2.destroyAllWindows()
     if vs is not None:
         vs.stop()

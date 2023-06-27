@@ -88,4 +88,4 @@ def extactemb():
 	f.write(pickle.dumps(data))
 	f.close()
 
-extactemb()
+# extactemb()
