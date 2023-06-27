@@ -39,7 +39,7 @@ def dashboard():
     with open('flask-server\Past_intrusion.csv', 'r') as file:
         reader = csv.reader(file)
         table_data = list(reader)
-    return render_template('index.html', table_data=table_data)
+    return render_template('dashboard.html', table_data=table_data)
 
 
 if __name__ == '__main__':
