@@ -40,13 +40,14 @@
               <th>Date</th>
               <th>Time</th>
             </tr>
-            {% for row in table_data %}
+            {% for row in table_data[::-1] %} {% if loop.index >= 2 and
+            loop.index <= 5 %}
             <tr>
               {% for value in row %}
               <td>{{ value }}</td>
               {% endfor %}
             </tr>
-            {% endfor %}
+            {% endif %} {% endfor %}
           </table>
         </div>
       </div>
