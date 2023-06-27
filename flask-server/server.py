@@ -34,12 +34,15 @@ def process():
     print("Running script for name: "+name)
     return redirect(url_for('dashboard'))
 
-@app.route('/')
+@app.route('/dashboard')
 def dashboard():
     with open('flask-server\Past_intrusion.csv', 'r') as file:
         reader = csv.reader(file)
         table_data = list(reader)
     return render_template('dashboard.html', table_data=table_data)
+@app.route('/')
+def login():
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
