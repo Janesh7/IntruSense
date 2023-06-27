@@ -1,5 +1,6 @@
 import cv2
-from flask import Flask, render_template, Response
+import csv
+from flask import Flask, render_template, Response, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -25,9 +26,20 @@ def generate_frames():
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')  # Stream the video frames
 
+@app.route('/process', methods=['POST'])
+def process():
+    name = request.form['name']
+    # Run your script using the name here
+    # Replace the print statement with your script logic
+    print("Running script for name: "+name)
+    return redirect(url_for('dashboard'))
+
 @app.route('/')
 def dashboard():
-    return render_template('index.html')
+    with open('flask-server\Past_intrusion.csv', 'r') as file:
+        reader = csv.reader(file)
+        table_data = list(reader)
+    return render_template('index.html', table_data=table_data)
 
 
 if __name__ == '__main__':
