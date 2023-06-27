@@ -2,7 +2,7 @@ import cv2
 import csv
 from flask import Flask, render_template, Response, request, redirect, url_for
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates', static_folder='static')
 
 def generate_frames():
     camera = cv2.VideoCapture(0)  # Change the parameter to the desired camera index, if necessary
