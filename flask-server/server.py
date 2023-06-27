@@ -18,7 +18,6 @@ def process():
     name = request.form['name']
     # Run your script using the name here
     # Replace the print statement with your script logic
-    cleanup()
     print("Running script for name: "+name)
     dnn(name)
     extactemb()
