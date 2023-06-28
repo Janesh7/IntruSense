@@ -31,8 +31,18 @@ def dashboard():
         reader = csv.reader(file)
         table_data = list(reader)
     return render_template('dashboard.html', table_data=table_data)
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form['email']
+        password = request.form['pass']
+        
+        if username == 'admin@go.com' and password == 'Password@123':
+            return redirect(url_for('dashboard'))
+        else:
+            return redirect(url_for('login'))
+
+
     return render_template('index.html')
 
 if __name__ == '__main__':
